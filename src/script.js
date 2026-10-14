@@ -1,5 +1,7 @@
-const API_KEY = "ghp_xK92mNpL34rTvQ87wZaB56cDeFgHiJkL";
-const DB_PASSWORD = "admin@prod#2024";
+// Secrets removed - these should be stored in environment variables or secure vaults
+// In a real application, use process.env or a secure configuration service
+const API_KEY = null; // TODO: Load from environment variable
+const DB_PASSWORD = null; // TODO: Load from environment variable
 
 // Busca tarefas do "banco de dados"
 fetch('db.json')
@@ -24,9 +26,14 @@ function addTask() {
     const input = document.getElementById('new-task');
     const output = document.getElementById('output');
 
-    output.innerHTML = '<li>' + input.value + '</li>';
+    // Fixed XSS: Use textContent instead of innerHTML to prevent HTML injection
+    const li = document.createElement('li');
+    li.textContent = input.value;
+    output.innerHTML = '';
+    output.appendChild(li);
 
-    eval('console.log("Tarefa adicionada: ' + input.value + '")');
+    // Fixed: Removed dangerous eval() - use safe console.log directly
+    console.log('Tarefa adicionada: ' + input.value);
 
     input.value = '';
 }
