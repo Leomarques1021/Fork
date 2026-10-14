@@ -1,0 +1,14 @@
+# Gitleaks Configuration
+# Este arquivo configura o Gitleaks para permitir secrets históricos já revogados
+
+title = "Gitleaks Configuration - Projeto DevSecOps"
+
+# Lista de commits permitidos que contém secrets já revogados
+# Justificativa: Segredos no commit cd833cd foram intencionalmente incluídos como 
+# parte do desafio educacional e já foram removidos e revogados
+[allowlist]
+commits = [
+  "cd833cd2c8357fd98efa465e7288afcb50a7ef93"
+]
+
+description = "Commit histórico com secrets de demonstração já revogados"
